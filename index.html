@@ -3,33 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La mia Landing Page</title>
+  <title>Quello della Sicurezza</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f0f0f;
+      background: radial-gradient(circle at top, #1a1a1a, #0f0f0f);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
     }
 
     .container {
-      max-width: 500px;
-      padding: 20px;
+      max-width: 520px;
+      padding: 30px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #222;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 15px;
     }
 
     h1 {
       margin-bottom: 10px;
+      font-size: 28px;
     }
 
     p {
       color: #aaa;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+      line-height: 1.5;
     }
 
     .btn {
@@ -37,8 +49,8 @@
       margin: 10px auto;
       padding: 15px;
       width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
+      max-width: 320px;
+      border-radius: 12px;
       text-decoration: none;
       color: white;
       font-weight: bold;
@@ -51,27 +63,48 @@
 
     .btn:hover {
       opacity: 0.85;
-      transform: scale(1.02);
+      transform: scale(1.03);
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #555;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>Benvenuto 👋</h1>
-    <p>Seguimi sulle mie piattaforme</p>
 
+    <div class="badge">🔐 Sicurezza • Contenuti • Insight</div>
+
+    <h1>Quello che non pubblico altrove.</h1>
+
+    <p>
+      Analisi, contenuti e idee sul mondo della sicurezza digitale e reale.
+      Diretto, senza rumore.
+    </p>
+
+    <!-- SUBSTACK (PRINCIPALE) -->
     <a class="btn substack" href="https://quellodellasicurezza.substack.com" target="_blank">
-      Substack
+      📬 Iscriviti su Substack
     </a>
 
+    <!-- X -->
     <a class="btn x" href="https://x.com/QSicurezza52568" target="_blank">
-      X (Twitter)
+      🐦 Seguimi su X
     </a>
 
+    <!-- INSTAGRAM -->
     <a class="btn instagram" href="https://instagram.com/quellodellasicurezza" target="_blank">
-      Instagram
+      📸 Instagram
     </a>
+
+    <div class="footer">
+      © Quello della Sicurezza — contenuti aggiornati regolarmente
+    </div>
+
   </div>
 </body>
 </html>
