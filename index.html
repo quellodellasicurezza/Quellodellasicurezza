@@ -2,72 +2,92 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quello della Sicurezza</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- SEO -->
+  <title>Quello della Sicurezza | Analisi sulla sicurezza reale</title>
+  <meta name="description" content="Analisi sulla sicurezza reale: rischio, prevenzione e comportamento. Capire prima per evitare problemi dopo." />
+  <meta name="keywords" content="sicurezza reale, prevenzione rischio, sicurezza personale, analisi rischio, protezione" />
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #1a1a1a, #0f0f0f);
+      background: #0d0d0d;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       text-align: center;
     }
 
     .container {
-      max-width: 520px;
-      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 6px 12px;
-      background: #222;
-      border-radius: 20px;
-      font-size: 12px;
-      color: #aaa;
-      margin-bottom: 15px;
+    .hero-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .hero-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     h1 {
+      font-size: 26px;
       margin-bottom: 10px;
-      font-size: 28px;
     }
 
     p {
-      color: #aaa;
-      margin-bottom: 25px;
+      color: #bbb;
       line-height: 1.5;
+      margin-bottom: 25px;
     }
 
-    .btn {
+    .cta {
       display: block;
-      margin: 10px auto;
-      padding: 15px;
-      width: 100%;
-      max-width: 320px;
+      background: #ff6719;
+      color: white;
+      padding: 16px;
       border-radius: 12px;
       text-decoration: none;
-      color: white;
       font-weight: bold;
+      margin-bottom: 15px;
       transition: 0.2s;
     }
 
-    .substack { background: #ff6719; }
-    .x { background: #1da1f2; }
-    .instagram { background: #e1306c; }
-
-    .btn:hover {
-      opacity: 0.85;
+    .cta:hover {
       transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .secondary {
+      margin-top: 20px;
+    }
+
+    .secondary a {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 14px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .secondary a:hover {
+      color: white;
+      border-color: #666;
     }
 
     .footer {
-      margin-top: 25px;
+      margin-top: 30px;
       font-size: 12px;
       color: #555;
     }
@@ -77,32 +97,33 @@
 <body>
   <div class="container">
 
-    <div class="badge">🔐 Sicurezza • Contenuti • Insight</div>
+    <!-- IMMAGINE CLICCABILE -->
+    <a href="https://quellodellasicurezza.substack.com" target="_blank">
+      <img src="substack-profile.jpg"
+           alt="Quello della Sicurezza - sicurezza reale"
+           class="hero-img">
+    </a>
 
-    <h1>Quello che non pubblico altrove.</h1>
+    <h1>Capire la sicurezza reale, prima che serva.</h1>
 
     <p>
-      Analisi, contenuti e idee sul mondo della sicurezza digitale e reale.
-      Diretto, senza rumore.
+      Analisi su rischio, prevenzione e comportamento nel mondo reale.
+      Niente teoria inutile: solo ciò che serve per evitare problemi.
     </p>
 
-    <!-- SUBSTACK (PRINCIPALE) -->
-    <a class="btn substack" href="https://quellodellasicurezza.substack.com" target="_blank">
-      📬 Iscriviti su Substack
+    <!-- CTA -->
+    <a class="cta" href="https://quellodellasicurezza.substack.com" target="_blank">
+      📬 Iscriviti alla newsletter
     </a>
 
-    <!-- X -->
-    <a class="btn x" href="https://x.com/QSicurezza52568" target="_blank">
-      🐦 Seguimi su X
-    </a>
-
-    <!-- INSTAGRAM -->
-    <a class="btn instagram" href="https://instagram.com/quellodellasicurezza" target="_blank">
-      📸 Instagram
-    </a>
+    <!-- SOCIAL -->
+    <div class="secondary">
+      <a href="https://x.com/QSicurezza52568" target="_blank">X</a>
+      <a href="https://instagram.com/quellodellasicurezza" target="_blank">Instagram</a>
+    </div>
 
     <div class="footer">
-      © Quello della Sicurezza — contenuti aggiornati regolarmente
+      © Quello della Sicurezza — sicurezza reale e prevenzione
     </div>
 
   </div>
