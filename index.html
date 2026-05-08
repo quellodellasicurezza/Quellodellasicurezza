@@ -62,16 +62,15 @@
       margin-bottom: 30px;
     }
 
-    .btn {
-      padding: 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid #2a2a2a;
-      color: #eaeaea;
-      background: #111;
-    }
+    .btn { padding: 14px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #2a2a2a; color: #eaeaea; background: #111; }
+a, a:visited {
+  color: #eaeaea;
+  text-decoration: none;
+}
 
+a:hover, a:active {
+  color: #ffffff;
+}
     /* WIDGET GENERICI */
     .widget {
       border: 1px solid #222;
@@ -81,7 +80,9 @@
       margin-bottom: 20px;
       text-align: left;
     }
-
+.widget a, .widget a:visited {
+  color: #eaeaea;
+}
     .widget-title {
       font-size: 11px;
       color: #ff6719;
@@ -158,8 +159,7 @@ async function loadSubstack() {
 
     document.getElementById("substack-widget").innerHTML = `
       <a href="${link}" target="_blank"><div class="widget-title">Leggi la mia ultima analisi</div>
-      <strong>${title}</strong><br><br>
-      Leggi →</a>
+      <strong>${title}</strong><br><br></a>
     `;
   } catch {
     document.getElementById("substack-widget").innerText = "Errore caricamento.";
