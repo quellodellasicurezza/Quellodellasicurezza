@@ -61,6 +61,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      margin-bottom: 30px;
     }
 
     .btn {
@@ -84,6 +85,54 @@
     .ig:hover { border-color: #E1306C; }
     .sub:hover { border-color: #ff6719; }
 
+    /* SUBSTACK TRIGGER WIDGET */
+    .substack-widget {
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 18px;
+      background: #111;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .substack-widget:hover {
+      border-color: #ff6719;
+      transform: scale(1.01);
+    }
+
+    .substack-label {
+      font-size: 11px;
+      color: #ff6719;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .substack-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .substack-date {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .substack-excerpt {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #ccc;
+    }
+
+    .substack-cta {
+      font-size: 13px;
+      color: #ff6719;
+      font-weight: bold;
+    }
+
     .footer {
       margin-top: 30px;
       font-size: 11px;
@@ -95,7 +144,7 @@
 <body>
   <div class="container">
 
-    <img src="quellodellasicurezza.jpg" alt="Quello della Sicurezza" class="avatar">
+    <img src="substack-profile.jpg" alt="Quello della Sicurezza" class="avatar">
 
     <h1>Quello della Sicurezza</h1>
 
@@ -105,8 +154,8 @@
 
     <div class="section">
       Attività di divulgazione e osservazione delle dinamiche di sicurezza reale.
-      L’obiettivo è interpretare segnali deboli, contesti e comportamenti che spesso
-      vengono ignorati, ma che influenzano situazioni critiche nella vita quotidiana.
+      Interpretazione di segnali deboli, contesti e comportamenti che spesso vengono ignorati,
+      ma che anticipano eventi critici.
     </div>
 
     <div class="buttons">
@@ -115,10 +164,61 @@
       <a class="btn sub" href="https://quellodellasicurezza.substack.com" target="_blank">Newsletter Substack</a>
     </div>
 
+    <!-- TRIGGER WIDGET -->
+    <div class="substack-widget" id="substack-widget">
+      Caricamento...
+    </div>
+
     <div class="footer">
       Analisi indipendenti sulla sicurezza reale
     </div>
 
   </div>
+
+<script>
+const SUBSTACK_URL = "https://quellodellasicurezza.substack.com/feed";
+
+async function loadSubstack() {
+  const proxy = "https://api.allorigins.win/get?url=";
+  const target = encodeURIComponent(SUBSTACK_URL);
+
+  try {
+    const res = await fetch(proxy + target);
+    const data = await res.json();
+
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(data.contents, "text/xml");
+
+    const item = xml.querySelector("item");
+
+    const title = item.querySelector("title").textContent;
+    const link = item.querySelector("link").textContent;
+    const pubDate = new Date(item.querySelector("pubDate").textContent);
+    const description = item.querySelector("description").textContent;
+
+    const widget = document.getElementById("substack-widget");
+
+    widget.innerHTML = `
+      <div class="substack-label">Ultima analisi pubblicata</div>
+      <div class="substack-title">${title}</div>
+      <div class="substack-date">${pubDate.toLocaleDateString()}</div>
+      <div class="substack-excerpt">${description.substring(0, 140)}...</div>
+      <div class="substack-cta">Leggi l’analisi completa →</div>
+    `;
+
+    widget.onclick = () => {
+      window.open(link, "_blank");
+    };
+
+  } catch (err) {
+    document.getElementById("substack-widget").innerHTML =
+      "Impossibile caricare l’ultima analisi.";
+    console.error(err);
+  }
+}
+
+loadSubstack();
+</script>
+
 </body>
 </html>
