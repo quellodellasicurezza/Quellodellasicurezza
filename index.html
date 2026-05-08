@@ -157,9 +157,9 @@ async function loadSubstack() {
     const link = item.querySelector("link").textContent;
 
     document.getElementById("substack-widget").innerHTML = `
-      <div class="widget-title">Ultima analisi pubblicata</div>
+      <a href="${link}" target="_blank"><div class="widget-title">Leggi la mia ultima analisi</div>
       <strong>${title}</strong><br><br>
-      <a href="${link}" target="_blank">Leggi →</a>
+      Leggi →</a>
     `;
   } catch {
     document.getElementById("substack-widget").innerText = "Errore caricamento.";
