@@ -1,20 +1,21 @@
 const fs = require("fs");
 const https = require("https");
-const Parser = require("rss-parser");
 
-const FEED = "https://quellodellasicurezza.substack.com/feed";
+const FEED =
+  "https://api.rss2json.com/v1/api.json?rss_url=https://quellodellasicurezza.substack.com/feed";
 
-function getFeed(url) {
+
+function getJSON(url) {
+
   return new Promise((resolve, reject) => {
 
-    const options = {
-      headers: {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/rss+xml, application/xml, text/xml"
-      }
-    };
+    https.get(url, {
 
-    https.get(url, options, (res) => {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+
+    }, res => {
 
       let data = "";
 
@@ -24,12 +25,10 @@ function getFeed(url) {
 
       res.on("end", () => {
 
-        if (res.statusCode !== 200) {
-          reject(
-            new Error("HTTP " + res.statusCode)
-          );
-        } else {
-          resolve(data);
+        try {
+          resolve(JSON.parse(data));
+        } catch(e) {
+          reject(e);
         }
 
       });
@@ -37,6 +36,7 @@ function getFeed(url) {
     }).on("error", reject);
 
   });
+
 }
 
 
@@ -44,31 +44,31 @@ async function update() {
 
   try {
 
-    const xml = await getFeed(FEED);
+    const data = await getJSON(FEED);
 
-    const parser = new Parser();
-
-    const feed = await parser.parseString(xml);
-
-    const post = feed.items[0];
-
-    const title = post.title || "";
-    const link = post.link || "";
-    const date = new Date(post.pubDate)
-      .toLocaleDateString("it-IT");
+    const post = data.items[0];
 
     const html = `
+
 <div class="widget-title">
 Ultima analisi
 </div>
 
-<a href="${link}" target="_blank">
-<strong>${title}</strong>
+<a href="${post.link}" target="_blank">
+
+<strong>
+${post.title}
+</strong>
+
 <br><br>
+
 <span style="color:#aaa;font-size:13px">
-Pubblicata il ${date}
+${new Date(post.pubDate)
+.toLocaleDateString("it-IT")}
 </span>
+
 </a>
+
 `;
 
     fs.writeFileSync(
@@ -76,19 +76,16 @@ Pubblicata il ${date}
       html
     );
 
-    console.log("Aggiornamento completato");
+    console.log("Widget aggiornato");
 
-  } catch (err) {
+  } catch(err) {
 
-    console.error(
-      "Errore:",
-      err.message
-    );
-
+    console.error(err);
     process.exit(1);
 
   }
 
 }
+
 
 update();
