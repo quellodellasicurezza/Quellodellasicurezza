@@ -1,23 +1,30 @@
 const fs = require("fs");
 const Parser = require("rss-parser");
 
-const parser = new Parser();
+const parser = new Parser({
+  headers: {
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+  }
+});
 
 const FEED =
   "https://quellodellasicurezza.substack.com/feed";
 
 async function update() {
 
-  const feed = await parser.parseURL(FEED);
+  try {
 
-  const post = feed.items[0];
+    const feed = await parser.parseURL(FEED);
 
-  const title = post.title || "";
-  const link = post.link || "";
-  const date = new Date(post.pubDate)
-    .toLocaleDateString("it-IT");
+    const post = feed.items[0];
 
-  const html = `
+    const title = post.title || "";
+    const link = post.link || "";
+    const date = new Date(post.pubDate)
+      .toLocaleDateString("it-IT");
+
+    const html = `
 <div class="widget-title">
 Ultima analisi
 </div>
@@ -31,10 +38,22 @@ Pubblicata il ${date}
 </a>
 `;
 
-  fs.writeFileSync(
-    "latest-newsletter.html",
-    html
-  );
+    fs.writeFileSync(
+      "latest-newsletter.html",
+      html
+    );
+
+    console.log("Widget aggiornato");
+
+  } catch (error) {
+
+    console.error(
+      "Errore lettura Substack:",
+      error
+    );
+
+    process.exit(1);
+  }
 }
 
 update();
