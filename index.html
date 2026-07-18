@@ -1,172 +1,213 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quello della Sicurezza</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: #eaeaea;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+<title>Quello della Sicurezza</title>
 
-    .container {
-      max-width: 520px;
-      padding: 50px 20px;
-      text-align: center;
-    }
+<style>
 
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 2px solid #222;
-      filter: grayscale(100%);
-      transition: 0.3s ease;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0b;
+  color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .avatar:hover {
-      filter: grayscale(0%);
-      transform: scale(1.03);
-    }
+.container {
+  max-width: 520px;
+  padding: 50px 20px;
+  text-align: center;
+}
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 2px solid #222;
+  filter: grayscale(100%);
+  transition: 0.3s ease;
+}
 
-    .bio {
-      font-size: 15px;
-      color: #cfcfcf;
-      margin-bottom: 25px;
-    }
+.avatar:hover {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
 
-    .section {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 30px;
-    }
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
 
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
+.bio {
+  font-size: 15px;
+  color: #cfcfcf;
+  margin-bottom: 25px;
+}
 
-    .btn { padding: 14px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #2a2a2a; color: #eaeaea; background: #111; }
-a, a:visited {
+.section {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #2a2a2a;
+  color: #eaeaea;
+  background: #111;
+}
+
+a,
+a:visited {
   color: #eaeaea;
   text-decoration: none;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
   color: #ffffff;
 }
-    /* WIDGET GENERICI */
-    .widget {
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 16px;
-      background: #111;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-.widget a, .widget a:visited {
+
+
+/* WIDGET NEWSLETTER */
+
+.widget {
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 16px;
+  background: #111;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.widget a,
+.widget a:visited {
   color: #eaeaea;
 }
-    .widget-title {
-      font-size: 11px;
-      color: #ff6719;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
 
-    /* FOOTER */
-    footer {
-      width: 100%;
-      text-align: center;
-      padding: 20px;
-      font-size: 11px;
-      color: #555;
-      border-top: 1px solid #111;
-      margin-top: 40px;
-    }
-  </style>
+.widget-title {
+  font-size: 11px;
+  color: #ff6719;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+
+/* FOOTER */
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: #555;
+  border-top: 1px solid #111;
+  margin-top: 40px;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
 <div class="container">
 
-  <img src="quellodellasicurezza.jpg" class="avatar">
 
-  <h1>Quello della Sicurezza</h1>
+<img src="quellodellasicurezza.jpg" class="avatar">
 
-  <div class="bio">
-    Analisi indipendenti su rischio e sicurezza reale.
-  </div>
 
-  <div class="section">
-Guardia Giurata con esperienza decennale.<br>
-Leggo segnali deboli prima che diventino problemi
-  </div>
+<h1>Quello della Sicurezza</h1>
 
-  <div class="buttons">
-    <a class="btn" href="https://instagram.com/quellodellasicurezza" target="_blank">Instagram</a>
-    <a class="btn" href="https://quellodellasicurezza.substack.com/subscribe" target="_blank">Newsletter</a>
-  </div>
 
-  <!-- SUBSTACK -->
-  <div class="widget" id="substack-widget">
-    Caricamento ultima analisi...
-  </div>
+<div class="bio">
+Analisi indipendenti su rischio e sicurezza reale.
 </div>
 
+
+<div class="section">
+Guardia Giurata con esperienza decennale.<br>
+Leggo segnali deboli prima che diventino problemi
+</div>
+
+
+<div class="buttons">
+
+<a class="btn"
+href="https://instagram.com/quellodellasicurezza"
+target="_blank">
+Instagram
+</a>
+
+
+<a class="btn"
+href="https://quellodellasicurezza.substack.com/subscribe"
+target="_blank">
+Newsletter
+</a>
+
+</div>
+
+
+<!-- ULTIMA ANALISI SUBSTACK -->
+
+<div class="widget" id="substack-widget">
+
+Caricamento ultima analisi...
+
+</div>
+
+
+</div>
+
+
 <footer>
-  Copyright 2026 - Quello della Sicurezza
+Copyright 2026 - Quello della Sicurezza
 </footer>
 
-<script async src="//www.instagram.com/embed.js"></script>
+
 
 <script>
-const SUBSTACK_URL = "https://quellodellasicurezza.substack.com/feed";
 
-async function loadSubstack() {
-  const proxy = "https://api.allorigins.win/get?url=";
-  const target = encodeURIComponent(SUBSTACK_URL);
+fetch("latest-newsletter.html")
+.then(response => response.text())
+.then(html => {
 
-  try {
-    const res = await fetch(proxy + target);
-    const data = await res.json();
+document.getElementById(
+"substack-widget"
+).innerHTML = html;
 
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(data.contents, "text/xml");
+})
 
-    const item = xml.querySelector("item");
+.catch(() => {
 
-    const title = item.querySelector("title").textContent;
-    const link = item.querySelector("link").textContent;
+document.getElementById(
+"substack-widget"
+).innerHTML =
+"Ultima analisi non disponibile.";
 
-    document.getElementById("substack-widget").innerHTML = `
-      <a href="${link}" target="_blank"><div class="widget-title">Leggi la mia ultima analisi</div>
-      <strong>${title}</strong><br><br></a>
-    `;
-  } catch {
-    document.getElementById("substack-widget").innerText = "Errore caricamento.";
-  }
-}
+});
 
-loadSubstack();
 </script>
+
 
 </body>
 </html>
