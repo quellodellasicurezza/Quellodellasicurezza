@@ -1,21 +1,54 @@
 const fs = require("fs");
+const https = require("https");
 const Parser = require("rss-parser");
 
-const parser = new Parser({
-  headers: {
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-  }
-});
+const FEED = "https://quellodellasicurezza.substack.com/feed";
 
-const FEED =
-  "https://quellodellasicurezza.substack.com/feed";
+function getFeed(url) {
+  return new Promise((resolve, reject) => {
+
+    const options = {
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/rss+xml, application/xml, text/xml"
+      }
+    };
+
+    https.get(url, options, (res) => {
+
+      let data = "";
+
+      res.on("data", chunk => {
+        data += chunk;
+      });
+
+      res.on("end", () => {
+
+        if (res.statusCode !== 200) {
+          reject(
+            new Error("HTTP " + res.statusCode)
+          );
+        } else {
+          resolve(data);
+        }
+
+      });
+
+    }).on("error", reject);
+
+  });
+}
+
 
 async function update() {
 
   try {
 
-    const feed = await parser.parseURL(FEED);
+    const xml = await getFeed(FEED);
+
+    const parser = new Parser();
+
+    const feed = await parser.parseString(xml);
 
     const post = feed.items[0];
 
@@ -43,17 +76,19 @@ Pubblicata il ${date}
       html
     );
 
-    console.log("Widget aggiornato");
+    console.log("Aggiornamento completato");
 
-  } catch (error) {
+  } catch (err) {
 
     console.error(
-      "Errore lettura Substack:",
-      error
+      "Errore:",
+      err.message
     );
 
     process.exit(1);
+
   }
+
 }
 
 update();
