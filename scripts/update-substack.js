@@ -2,164 +2,174 @@ const fs = require("fs");
 const https = require("https");
 
 const FEED =
-  "https://api.rss2json.com/v1/api.json?rss_url=https://quellodellasicurezza.substack.com/feed";
+"https://api.rss2json.com/v1/api.json?rss_url=https://quellodellasicurezza.substack.com/feed";
 
 
 function getJSON(url) {
 
-  return new Promise((resolve, reject) => {
+return new Promise((resolve,reject)=>{
 
-    https.get(url, {
+https.get(url,{
+headers:{
+"User-Agent":"Mozilla/5.0"
+}
+},
+res=>{
 
-      headers: {
-        "User-Agent": "Mozilla/5.0"
-      }
+let data="";
 
-    }, res => {
+res.on("data",chunk=>{
+data+=chunk;
+});
 
-      let data = "";
+res.on("end",()=>{
 
-      res.on("data", chunk => {
-        data += chunk;
-      });
+try{
+resolve(JSON.parse(data));
+}
+catch(e){
+reject(e);
+}
 
-      res.on("end", () => {
+});
 
-        try {
-          resolve(JSON.parse(data));
-        }
+}).on("error",reject);
 
-        catch(e) {
-          reject(e);
-        }
-
-      });
-
-    }).on("error", reject);
-
-  });
+});
 
 }
 
 
 
-function cleanText(html) {
+function clean(text){
 
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .trim();
+return (text || "")
+.replace(/<[^>]*>/g,"")
+.replace(/&nbsp;/g," ")
+.replace(/&amp;/g,"&")
+.trim();
 
 }
 
 
 
-async function update() {
+function card(post){
 
+const title=post.title || "";
+const link=post.link || "";
 
-try {
-
-
-const data = await getJSON(FEED);
-
-const post = data.items[0];
-
-
-const title = post.title || "";
-
-const link = post.link || "";
-
-const date = new Date(post.pubDate)
+const date=new Date(post.pubDate)
 .toLocaleDateString("it-IT");
 
 
-const excerpt = cleanText(
-  post.description || post.content || ""
+const excerpt=clean(
+post.description || post.content
 )
-.substring(0,220)
-+ "...";
+.substring(0,220)+"...";
 
 
-let image = "";
-
-if(post.thumbnail){
-
-image = `
-<img src="${post.thumbnail}"
+const image=post.thumbnail
+? `<img src="${post.thumbnail}"
 style="
 width:100%;
 border-radius:10px;
 margin-bottom:15px;
-">
+">`
+:"";
+
+
+return `
+
+<article class="newsletter-card">
+
+${image}
+
+<div class="widget-title">
+Analisi
+</div>
+
+
+<h3>
+<a href="${link}" target="_blank">
+${title}
+</a>
+</h3>
+
+
+<p>
+${excerpt}
+</p>
+
+
+<div class="date">
+${date}
+</div>
+
+
+<a class="read"
+href="${link}"
+target="_blank">
+Leggi →
+</a>
+
+
+</article>
+
 `;
 
 }
 
 
 
-const html = `
+async function update(){
 
-${image}
-
-<div class="widget-title">
-Ultima analisi
-</div>
+try{
 
 
-<strong>
-${title}
-</strong>
+const data=await getJSON(FEED);
+
+const posts=data.items;
 
 
-<p style="
-color:#aaa;
-font-size:14px;
-line-height:1.5;
-">
-
-${excerpt}
-
-</p>
+const latest=posts[0];
 
 
-<div style="
-font-size:12px;
-color:#777;
-margin-bottom:12px;
-">
-
-Pubblicata il ${date}
-
-</div>
-
-
-<a href="${link}"
-target="_blank"
-style="
-display:inline-block;
-padding:10px 14px;
-border-radius:8px;
-background:#1b1b1b;
-border:1px solid #333;
-">
-
-Leggi l'analisi completa →
-
-</a>
-
-`;
-
-
+// ULTIMA NEWSLETTER
 
 fs.writeFileSync(
 "latest-newsletter.html",
-html
+
+card(latest)
+
 );
 
 
+
+// ARCHIVIO
+
+const archive=posts
+.slice(0,5)
+.map(card)
+.join("");
+
+
+fs.writeFileSync(
+"archive-newsletter.html",
+
+`
+<div class="widget-title">
+Ultime analisi
+</div>
+
+${archive}
+`
+
+);
+
+
+
 console.log(
-"Anteprima aggiornata"
+"Aggiornamento completato"
 );
 
 
@@ -173,7 +183,6 @@ console.error(err);
 process.exit(1);
 
 }
-
 
 }
 
