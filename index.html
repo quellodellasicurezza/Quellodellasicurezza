@@ -17,37 +17,28 @@
 box-sizing:border-box;
 }
 
-
 body{
-
 margin:0;
 background:#0b0b0b;
 color:#eaeaea;
 font-family:Arial,Helvetica,sans-serif;
-
 }
 
 
 .container{
-
 max-width:640px;
 margin:auto;
 padding:50px 22px;
-
 }
 
 
-
 .hero{
-
 text-align:center;
 margin-bottom:45px;
-
 }
 
 
 .avatar{
-
 width:150px;
 height:150px;
 border-radius:50%;
@@ -56,112 +47,87 @@ filter:grayscale(100%);
 border:2px solid #222;
 margin-bottom:25px;
 transition:.3s;
-
 }
 
 
 .avatar:hover{
-
 filter:grayscale(0%);
 transform:scale(1.03);
-
 }
-
 
 
 h1{
-
 font-size:30px;
 margin:0 0 15px;
-
 }
-
 
 
 .subtitle{
-
 font-size:18px;
 line-height:1.5;
 color:#d0d0d0;
-
 }
 
 
-
 .description{
-
 margin-top:25px;
 font-size:14px;
 line-height:1.7;
 color:#888;
-
 }
 
 
 
 .section{
-
 margin-bottom:35px;
-
 }
 
 
 
 .card{
-
 background:#111;
 border:1px solid #222;
 border-radius:16px;
 padding:22px;
-
 }
 
 
 
 .section-title{
-
 font-size:11px;
 letter-spacing:1px;
 text-transform:uppercase;
 color:#ff6719;
 margin-bottom:15px;
-
 }
 
 
 
 .article-title{
-
 font-size:22px;
 line-height:1.3;
 margin-bottom:15px;
-
 }
 
 
 
 .article-description{
-
 font-size:15px;
 line-height:1.6;
 color:#bbb;
-
 }
 
 
 
 .article-date{
-
 font-size:12px;
 color:#777;
 margin:15px 0;
-
 }
 
 
 
 .button{
-
 display:block;
 padding:15px;
 border-radius:12px;
@@ -172,34 +138,50 @@ text-decoration:none;
 font-weight:bold;
 text-align:center;
 margin-top:15px;
-
 }
 
 
-
 .button:hover{
-
 background:#1a1a1a;
+}
 
+
+.archive-item{
+padding:15px 0;
+border-bottom:1px solid #222;
+}
+
+
+.archive-item:last-child{
+border-bottom:none;
+}
+
+
+.archive-title{
+font-size:15px;
+line-height:1.4;
+}
+
+
+.archive-date{
+font-size:12px;
+color:#777;
+margin-top:8px;
 }
 
 
 
 footer{
-
 text-align:center;
 font-size:11px;
 color:#555;
 padding:30px;
-
 }
 
 
 a{
-
 color:#eaeaea;
 text-decoration:none;
-
 }
 
 
@@ -224,9 +206,7 @@ class="avatar">
 
 
 <h1>
-
 Quello della Sicurezza
-
 </h1>
 
 
@@ -258,9 +238,7 @@ Leggo segnali deboli prima che diventino problemi.
 
 
 <div class="section-title">
-
 Ultima analisi
-
 </div>
 
 
@@ -279,15 +257,15 @@ Caricamento ultima analisi...
 
 
 
+
+
 <section class="section">
 
 <div class="card">
 
 
 <h2>
-
 Ricevi le nuove analisi
-
 </h2>
 
 
@@ -297,7 +275,6 @@ Una email quando pubblico.<br>
 Nessun rumore. Solo contenuti originali.
 
 </p>
-
 
 
 <a 
@@ -319,17 +296,15 @@ Iscriviti alla newsletter
 
 
 
+
 <section class="section">
 
 <div class="card">
 
 
 <div class="section-title">
-
 Seguimi
-
 </div>
-
 
 
 <a 
@@ -348,7 +323,37 @@ Instagram
 
 
 
+
+
+
+
+<section class="section">
+
+<div class="card">
+
+
+<div class="section-title">
+Archivio analisi
+</div>
+
+
+<div id="archive-widget">
+
+Caricamento archivio...
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
 </main>
+
+
 
 
 
@@ -361,10 +366,12 @@ Instagram
 
 
 
+
+
 <script>
 
 
-const WORKER_URL = 
+const WORKER_URL =
 "https://quellodellasicurezza-feed.quellodellasicurezza.workers.dev";
 
 
@@ -385,7 +392,12 @@ return response.json();
 })
 
 
+
 .then(data=>{
+
+
+
+/* ULTIMA ANALISI */
 
 
 document.getElementById(
@@ -395,31 +407,28 @@ document.getElementById(
 
 <div class="article-title">
 
-${data.title}
+${data.latest.title}
 
 </div>
-
 
 
 <div class="article-description">
 
-${data.description}
+${data.latest.description}
 
 </div>
-
 
 
 <div class="article-date">
 
-Pubblicato il ${data.date}
+Pubblicato il ${data.latest.date}
 
 </div>
 
 
-
 <a 
 class="button"
-href="${data.link}"
+href="${data.latest.link}"
 target="_blank">
 
 Leggi l'analisi →
@@ -428,6 +437,57 @@ Leggi l'analisi →
 
 
 `;
+
+
+
+
+
+/* ARCHIVIO */
+
+
+document.getElementById(
+"archive-widget"
+).innerHTML =
+
+
+data.archive.map(article=>{
+
+
+return `
+
+<div class="archive-item">
+
+
+<a 
+href="${article.link}"
+target="_blank">
+
+
+<div class="archive-title">
+
+${article.title}
+
+</div>
+
+
+</a>
+
+
+<div class="archive-date">
+
+${article.date}
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}).join("");
+
 
 
 
@@ -440,11 +500,17 @@ Leggi l'analisi →
 document.getElementById(
 "substack-widget"
 ).innerHTML =
-
 "Ultima analisi non disponibile.";
 
 
+document.getElementById(
+"archive-widget"
+).innerHTML =
+"Archivio non disponibile.";
+
+
 });
+
 
 
 </script>
