@@ -3,8 +3,8 @@
 
 <head>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Quello della Sicurezza</title>
 
@@ -12,213 +12,277 @@
 
 <style>
 
+* {
+box-sizing:border-box;
+}
+
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0b0b;
-  color: #eaeaea;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+margin:0;
+background:#0b0b0b;
+color:#eaeaea;
+font-family:Arial, Helvetica, sans-serif;
+
 }
 
 
 .container {
-  max-width: 520px;
-  padding: 50px 20px;
-  text-align: center;
+
+max-width:640px;
+margin:auto;
+padding:50px 22px;
+
+}
+
+
+/* HERO */
+
+.hero {
+
+text-align:center;
+margin-bottom:45px;
+
 }
 
 
 .avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border: 2px solid #222;
-  filter: grayscale(100%);
-  transition: .3s ease;
+
+width:150px;
+height:150px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+filter:grayscale(100%);
+
+border:2px solid #222;
+
+margin-bottom:25px;
+
+transition:.3s;
+
 }
 
 
 .avatar:hover {
-  filter: grayscale(0%);
-  transform: scale(1.03);
+
+filter:grayscale(0%);
+transform:scale(1.03);
+
 }
+
 
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
 
-
-.bio {
-  font-size: 15px;
-  color: #cfcfcf;
-  margin-bottom: 25px;
-}
-
-
-.section {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 30px;
-}
-
-
-/* PULSANTI */
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-
-.btn {
-
-  padding: 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 1px solid #2a2a2a;
-  color: #eaeaea;
-  background: #111;
-
-}
-
-
-.btn:hover {
-
-background:#1a1a1a;
+font-size:30px;
+font-weight:700;
+margin:0 0 15px;
 
 }
 
 
 
-a,
-a:visited {
-
-color:#eaeaea;
-text-decoration:none;
-
-}
-
-
-/* WIDGET */
-
-.widget {
-
-border:1px solid #222;
-border-radius:12px;
-padding:16px;
-background:#111;
-margin-bottom:20px;
-text-align:left;
-
-}
-
-
-.widget-title {
-
-font-size:11px;
-color:#ff6719;
-text-transform:uppercase;
-margin-bottom:8px;
-
-}
-
-
-/* CARD ARTICOLI */
-
-.newsletter-card {
-
-border-top:1px solid #222;
-padding-top:18px;
-margin-top:18px;
-
-}
-
-
-.newsletter-card img {
-
-max-width:100%;
-border-radius:10px;
-
-}
-
-
-.newsletter-card h3 {
+.subtitle {
 
 font-size:18px;
-margin:10px 0;
+line-height:1.5;
+color:#d0d0d0;
+
+margin-bottom:25px;
 
 }
 
 
-.newsletter-card p {
+
+.description {
 
 font-size:14px;
-line-height:1.5;
-color:#bbb;
+line-height:1.7;
+color:#888;
 
 }
 
 
-.date {
 
-font-size:12px;
-color:#666;
-margin-bottom:12px;
+
+/* SEZIONI */
+
+.section {
+
+margin-bottom:35px;
 
 }
 
 
-.read {
 
-display:inline-block;
-padding:10px 14px;
-border-radius:8px;
-background:#1a1a1a;
+.card {
+
+background:#111;
+
+border:1px solid #222;
+
+border-radius:16px;
+
+padding:22px;
+
+}
+
+
+
+.section-title {
+
+font-size:11px;
+
+letter-spacing:1px;
+
+text-transform:uppercase;
+
+color:#ff6719;
+
+margin-bottom:15px;
+
+}
+
+
+
+
+/* NEWSLETTER */
+
+#substack-widget {
+
+font-size:15px;
+
+line-height:1.6;
+
+}
+
+
+
+
+/* CALL TO ACTION */
+
+.cta {
+
+text-align:center;
+
+}
+
+
+
+.cta h2 {
+
+font-size:22px;
+
+margin-top:0;
+
+}
+
+
+
+.cta p {
+
+font-size:14px;
+
+color:#aaa;
+
+line-height:1.6;
+
+}
+
+
+
+.button {
+
+display:block;
+
+padding:15px;
+
+border-radius:12px;
+
+background:#111;
+
 border:1px solid #333;
 
+color:#fff;
+
+text-decoration:none;
+
+font-weight:bold;
+
+margin-top:20px;
+
+transition:.2s;
+
 }
+
+
+
+.button:hover {
+
+background:#1a1a1a;
+
+}
+
+
+
+/* INSTAGRAM */
+
+.social {
+
+text-align:center;
+
+}
+
+
 
 
 /* FOOTER */
 
 footer {
 
-width:100%;
 text-align:center;
-padding:20px;
+
 font-size:11px;
+
 color:#555;
-border-top:1px solid #111;
-margin-top:40px;
+
+padding:30px 20px;
 
 }
 
+
+a {
+
+color:#eaeaea;
+
+text-decoration:none;
+
+}
+
+
 </style>
 
-</head>
 
+</head>
 
 
 <body>
 
 
-<div class="container">
+<main class="container">
+
+
+
+<section class="hero">
 
 
 <img 
-src="quellodellasicurezza.jpg" 
-class="avatar"
-alt="Quello della Sicurezza">
-
+src="quellodellasicurezza.jpg"
+alt="Quello della Sicurezza"
+class="avatar">
 
 
 <h1>
@@ -226,29 +290,43 @@ Quello della Sicurezza
 </h1>
 
 
+<div class="subtitle">
 
-<div class="bio">
-
-Analisi indipendenti su rischio e sicurezza reale.
+Analisi indipendenti su rischio,
+sicurezza reale e segnali deboli.
 
 </div>
 
 
-
-<div class="section">
+<div class="description">
 
 Guardia Giurata con esperienza decennale.<br>
-Leggo segnali deboli prima che diventino problemi
+
+Leggo segnali deboli prima che diventino problemi.
 
 </div>
 
 
+</section>
 
 
 
-<!-- 1 - ULTIMA ANALISI -->
 
-<div class="widget">
+
+<!-- ULTIMA ANALISI -->
+
+
+<section class="section">
+
+<div class="card">
+
+
+<div class="section-title">
+
+Ultima analisi
+
+</div>
+
 
 <div id="substack-widget">
 
@@ -256,46 +334,80 @@ Caricamento ultima analisi...
 
 </div>
 
-</div>
-
-
-
-
-
-<!-- 2 - ARCHIVIO -->
-
-<div class="widget">
-
-<div id="archive-widget">
-
-Caricamento archivio...
 
 </div>
 
-</div>
+</section>
 
 
 
 
 
-<!-- 3 e 4 - AZIONI -->
 
-<div class="buttons">
+<!-- NEWSLETTER -->
+
+
+<section class="section">
+
+
+<div class="card cta">
+
+
+<h2>
+
+Ricevi le nuove analisi
+
+</h2>
+
+
+<p>
+
+Una email quando pubblico.
+<br>
+Nessun rumore. Solo contenuti originali.
+
+</p>
+
 
 
 <a 
-class="btn"
+class="button"
 href="https://quellodellasicurezza.substack.com/subscribe"
 target="_blank">
 
-Iscriviti alla Newsletter
+Iscriviti alla newsletter
 
 </a>
 
 
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- INSTAGRAM -->
+
+
+<section class="section">
+
+
+<div class="card social">
+
+
+<div class="section-title">
+
+Seguimi
+
+</div>
+
 
 <a 
-class="btn"
+class="button"
 href="https://instagram.com/quellodellasicurezza"
 target="_blank">
 
@@ -307,15 +419,19 @@ Instagram
 </div>
 
 
+</section>
 
-</div>
+
+
+</main>
+
 
 
 
 
 <footer>
 
-Copyright 2026 - Quello della Sicurezza
+© 2026 - Quello della Sicurezza
 
 </footer>
 
@@ -328,7 +444,7 @@ Copyright 2026 - Quello della Sicurezza
 
 fetch("latest-newsletter.html")
 
-.then(response => {
+.then(response=>{
 
 if(!response.ok)
 throw new Error();
@@ -336,6 +452,7 @@ throw new Error();
 return response.text();
 
 })
+
 
 .then(html=>{
 
@@ -345,43 +462,13 @@ document.getElementById(
 
 })
 
+
 .catch(()=>{
 
 document.getElementById(
 "substack-widget"
 ).innerHTML=
-"Nuova analisi in arrivo.";
-
-});
-
-
-
-
-fetch("archive-newsletter.html")
-
-.then(response => {
-
-if(!response.ok)
-throw new Error();
-
-return response.text();
-
-})
-
-.then(html=>{
-
-document.getElementById(
-"archive-widget"
-).innerHTML=html;
-
-})
-
-.catch(()=>{
-
-document.getElementById(
-"archive-widget"
-).innerHTML=
-"Archivio non disponibile.";
+"Ultima analisi non disponibile.";
 
 });
 
